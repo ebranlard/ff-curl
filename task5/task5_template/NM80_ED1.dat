@@ -1,0 +1,129 @@
+------- ELASTODYN v1.03.* INPUT FILE -------------------------------------------				
+NM80 IEA 29 - Using an elongated tower that do not contain the nacelle mass			
+--------------------- SIMULATION CONTROL --------------------------------------				
+FALSE	Echo		-	Echo input data to "<RootName>.ech" (flag)
+3	Method		-	Integration method: {1: RK4, 2: AB4, or 3: ABM4} (-)
+default	DT		-	Integration time step (s)
+---------------------- DEGREES OF FREEDOM --------------------------------------				
+FALSE   FlapDOF1  		-	First flapwise blade mode DOF (flag)
+FALSE   FlapDOF2  		-	Second flapwise blade mode DOF (flag)
+FALSE   EdgeDOF   		-	First edgewise blade mode DOF (flag)
+FALSE   TeetDOF   		-	Rotor-teeter DOF (flag) [unused for 3 blades]
+FALSE   DrTrDOF   	OK	-	Drivetrain rotational-flexibility DOF (flag)
+FALSE	GenDOF    	NONE	-	Generator DOF (flag)
+FALSE	YawDOF    	NONE	-	Yaw DOF (flag)
+FALSE   TwFADOF1  		-	First fore-aft tower bending-mode DOF (flag)
+FALSE   TwFADOF2  		-	Second fore-aft tower bending-mode DOF (flag)
+FALSE   TwSSDOF1  		-	First side-to-side tower bending-mode DOF (flag)
+FALSE   TwSSDOF2  		-	Second side-to-side tower bending-mode DOF (flag)
+FALSE	PtfmSgDOF 		-	Platform horizontal surge translation DOF (flag)
+FALSE	PtfmSwDOF 		-	Platform horizontal sway translation DOF (flag)
+FALSE	PtfmHvDOF 		-	Platform vertical heave translation DOF (flag)
+FALSE	PtfmRDOF  		-	Platform roll tilt rotation DOF (flag)
+FALSE	PtfmPDOF  		-	Platform pitch tilt rotation DOF (flag)
+FALSE	PtfmYDOF  		-	Platform yaw rotation DOF (flag)
+---------------------- INITIAL CONDITIONS --------------------------------------				
+0	OoPDefl    		-	Initial out-of-plane blade-tip displacement (meters)
+0	IPDefl     		-	Initial in-plane blade-tip deflection (meters)
+0.0	BlPitch(1) 	TODO, verify this is to feather	-	Blade 1 initial pitch (degrees)
+0.0	BlPitch(2) 		-	Blade 2 initial pitch (degrees)
+0.0	BlPitch(3) 		-	Blade 3 initial pitch (degrees) [unused for 2 blades]
+0	TeetDefl   		-	Initial or fixed teeter angle (degrees) [unused for 3 blades]
+0	Azimuth    		-	Initial azimuth angle for blade 1 (degrees)
+15.5	RotSpeed   	taken as case IV.1	-	Initial or fixed rotor speed (rpm)
+0.  	NacYaw 0.64    		-	Initial or fixed nacelle-yaw angle (degrees)
+0	TTDspFA    		-	Initial fore-aft tower-top displacement (meters)
+0	TTDspSS    		-	Initial side-to-side tower-top displacement (meters)
+0	PtfmSurge  		-	Initial or fixed horizontal surge translational displacement of platform (meters)
+0	PtfmSway   		-	Initial or fixed horizontal sway translational displacement of platform (meters)
+0	PtfmHeave  		-	Initial or fixed vertical heave translational displacement of platform (meters)
+0	PtfmRoll   		-	Initial or fixed roll tilt rotational displacement of platform (degrees)
+0	PtfmPitch  		-	Initial or fixed pitch tilt rotational displacement of platform (degrees)
+0	PtfmYaw    		-	Initial or fixed yaw rotational displacement of platform (degrees)
+---------------------- TURBINE CONFIGURATION -----------------------------------				
+3	NumBl     	ok	-	Number of blades (-)
+40.04	TipRad    	BladeLength=38.8, HubRad=1.24	-	The distance from the rotor apex to the blade tip (meters)
+1.24	HubRad    	ok	-	The distance from the rotor apex to the blade root (meters)
+0	PreCone(1)	ok	-	Blade 1 cone angle (degrees)
+0	PreCone(2)	ok	-	Blade 2 cone angle (degrees)
+0	PreCone(3)	ok	-	Blade 3 cone angle (degrees) [unused for 2 blades]
+0	HubCM     	According to comments, hub center of mass is at the end of the shaft, this is probably because there is no cone	-	The hub COG is downwind of the hub center since [N]<[C] - Distance from rotor apex to hub mass [positive downwind] (meters)
+0	UndSling  	ok	-	Undersling length [distance from teeter pin to the rotor apex] (meters) [unused for 3 blades]
+0	Delta3    	ok	-	Delta-3 angle for teetering rotors (degrees) [unused for 3 blades]
+0	AzimB1Up  	ok - Possibly change it to match hawc2	-	Azimuth value to use for I/O when blade 1 points up (degrees)
+-4.03	OverHang  	Taken as shaft length	-	Distance from yaw axis to rotor apex [3 blades] or teeter pin [2 blades] [negative for upwind turbines] (meters)
+2.19	ShftGagL  	Given in Shaft Sheet	-	Distance from rotor apex [3 blades] or teeter pin [2 blades] to shaft strain gages [positive for upwind rotors] (meters)
+0	ShftTilt  	ok	-	Rotor shaft tilt angle (degrees)
+-0.25	NacCMxn   	Obtained by combination of the shaft mass and nacelle element mass, see Shaft Sheet	-	The nacelle is 808mm upwind from yaw axis    - Downwind distance from the tower-top to the nacelle CM (meters)
+0	NacCMyn   	Obtained by combination of the shaft mass and nacelle element mass, see Shaft Sheet	-	Lateral  distance from the tower-top to the nacelle CM (meters)
+0.27	NacCMzn   	Obtained by combination of the shaft mass and nacelle element mass, see Shaft Sheet	-	Vertical distance from the tower-top to the nacelle CM (meters)
+0	NcIMUxn   	IMU put  at tower top for now	-	Downwind distance from the tower-top to the nacelle IMU (meters)
+0	NcIMUyn   	IMU put  at tower top for now	-	Lateral  distance from the tower-top to the nacelle IMU (meters)
+0	NcIMUzn   	IMU put  at tower top for now	-	Vertical distance from the tower-top to the nacelle IMU (meters)
+1.6	Twr2Shft  	Height of the "Nacelle Element"	-	Vertical distance from the tower-top to the rotor shaft (meters)
+57.94	TowerHt  NOTE: increased compared to 55.59	T	Taken as distance from ground to tower top	-	Height of tower above ground level [onshore] or MSL [offshore] (meters)
+-7.278	TowerBsHt 	Tuned foundation length	-	Height of tower base above ground level [onshore] or MSL [offshore] (meters)
+0	PtfmCMxt  		-	Downwind distance from the ground level [onshore] or MSL [offshore] to the platform CM (meters)
+0	PtfmCMyt  		-	Lateral distance from the ground level [onshore] or MSL [offshore] to the platform CM (meters)
+-10	PtfmCMzt  	Unimportant, but need to be below TowerBsHt	-	Vertical distance from the ground level [onshore] or MSL [offshore] to the platform CM (meters)
+-10	PtfmRefzt 	Unimportant, but need to be below TowerBsHt	-	Vertical distance from the ground level [onshore] or MSL [offshore] to the platform reference point (meters)
+---------------------- MASS AND INERTIA ----------------------------------------				
+0	TipMass(1) 	0	-	Tip-brake mass, blade 1 (kg)
+0	TipMass(2) 	0	-	Tip-brake mass, blade 2 (kg)
+0	TipMass(3) 	0	-	Tip-brake mass, blade 3 (kg) [unused for 2 blades]
+24439.8	HubMass    	Three times the hub element mass integrated, see Hub Sheet	-	Hub mass (kg)
+5.020E+06	HubIner    	Three times the hub element inertia and the shaft polar inertia	-	Hub inertia about rotor axis [3 blades] or teeter axis [2 blades] (kg m^2)
+0	GenIner    	Irrelevant here since Gen DOF is off	-	Generator inertia about HSS (kg m^2)
+65265	NacMass    	Obtained as the sum of the Nacelle element mass and shaft mass	-	Nacelle mass (kg)
+8607	NacYIner   	Combined nacelle mass times the COGx squared	-	Nacelle inertia about yaw axis (kg m^2)
+0	YawBrMass  	ok	-	Yaw bearing mass (kg)
+0	PtfmMass   		-	Platform mass (kg)
+0	PtfmRIner  		-	Platform inertia for roll tilt rotation about the platform CM (kg m^2)
+0	PtfmPIner  		-	Platform inertia for pitch tilt rotation about the platform CM (kg m^2)
+0	PtfmYIner  		-	Platform inertia for yaw rotation about the platform CM (kg m^2)
+---------------------- BLADE ---------------------------------------------------				
+36	BldNodes		-	Number of blade nodes (per blade) used for analysis (-)
+"../NM80-OF3.0/NM80_ED_Blade.dat"	BldFile(1)		-	Name of file containing properties for blade 1 (quoted string)
+"../NM80-OF3.0/NM80_ED_Blade.dat"	BldFile(2)		-	Name of file containing properties for blade 2 (quoted string)
+"../NM80-OF3.0/NM80_ED_Blade.dat"	BldFile(3)		-	Name of file containing properties for blade 3 (quoted string) [unused for 2 blades]
+---------------------- ROTOR-TEETER --------------------------------------------				
+0	TeetMod  		-	Rotor-teeter spring/damper model {0: none, 1: standard, 2: user-defined from routine UserTeet} (switch) [unused for 3 blades]
+0	TeetDmpP 		-	Rotor-teeter damper position (degrees) [used only for 2 blades and when TeetMod=1]
+0	TeetDmp  		-	Rotor-teeter damping constant (N-m/(rad/s)) [used only for 2 blades and when TeetMod=1]
+0	TeetCDmp 		-	Rotor-teeter rate-independent Coulomb-damping moment (N-m) [used only for 2 blades and when TeetMod=1]
+0	TeetSStP 		-	Rotor-teeter soft-stop position (degrees) [used only for 2 blades and when TeetMod=1]
+0	TeetHStP 		-	Rotor-teeter hard-stop position (degrees) [used only for 2 blades and when TeetMod=1]
+0	TeetSSSp 		-	Rotor-teeter soft-stop linear-spring constant (N-m/rad) [used only for 2 blades and when TeetMod=1]
+0	TeetHSSp 		-	Rotor-teeter hard-stop linear-spring constant (N-m/rad) [used only for 2 blades and when TeetMod=1]
+---------------------- DRIVETRAIN ----------------------------------------------				
+100	GBoxEff	Irrelevant here	-	GBoxEff    - Obtained by taking the average of all the efficiencies using T3.9 (see Excel Sheet GearBox) - Gearbox efficiency (%)
+1	GBRatio	Irrelevant here	-	GBRatio    - T3.8 - NOTE: 91 in WTC3 file - Gearbox ratio (-)
+2.200E+08	DTTorSpr	Tuned using linearization	-	DTTorSpr   - (see Excel Sheet Shaft) - Drivetrain torsional spring (N-m/rad)
+0.990E+06	DTTorDmp	NOTE: tuned to give 0.8% damping ratio (5% log dec)	-	Drivetrain torsional damper (N-m/(rad/s))
+---------------------- FURLING -------------------------------------------------				
+FALSE	Furling		-	Read in additional model properties for furling turbine (flag) [must currently be FALSE)
+"unused"	FurlFile		-	Name of file containing furling properties (quoted string) [unused when Furling=False]
+---------------------- TOWER ---------------------------------------------------				
+40	TwrNodes	NOTE !!! Should probably be set to a high value since the tower structural properties are tricky	-	Number of tower nodes used for analysis (-)
+"../NM80-OF3.0/NM80_ED_Tower.dat"	TwrFile	ok	-	Name of file containing tower properties (quoted string)
+---------------------- OUTPUT --------------------------------------------------				
+False	SumPrint		-	Print summary data to "<RootName>.sum" (flag)
+1	OutFile		-	Switch to determine where output will be placed: {1: in module output file only; 2: in glue code output file only; 3: both} (currently unused)
+TRUE	TabDelim		-	Use tab delimiters in text tabular output file? (flag) (currently unused)
+ES10.3E2	OutFmt		-	Format used for text tabular output (except time).  Resulting field should be 10 characters. (quoted string) (currently unused)
+0	Tstart		-	Time to begin tabular output (s) (currently unused)
+1	DecFact		-	Decimation factor for tabular output {1: output every time step} (-) (currently unused)
+0	NTwGages		-	Number of tower nodes that have strain gages for output [0 to 9] (-)
+99999	TwrGagNd		-	List of tower nodes that have strain gages [1 to TwrNodes] (-) [unused if NTwGages=0]
+0	NBlGages		-	Number of blade nodes that have strain gages for output [0 to 9] (-)
+2, 5, 8, 13, 17, 21, 26, 29, 35	BldGagNd	2	-	List of blade nodes that have strain gages [1 to BldNodes] (-) [unused if NBlGages=0]
+	OutList	9	-	The next line(s) contains a list of output parameters.  See OutListParameters.xlsx for a listing of available output channels, (-)
+"BldPitch1"               - Pitch angles for blades 1, 2, and 3
+"Azimuth"                 - Blade 1 azimuth angle
+"RotSpeed"                - Low-speed shaft and high-speed shaft speeds
+"GenSpeed"                - Low-speed shaft and high-speed shaft speeds
+"RotThrust"               - Rotor thrust                                at the main bearing
+"RotTorq"                 - Rotor torque                                at the main bearing
+"RotPwr"                  - Rotor power (this is equivalent to the low-speed shaft power)
+END of input file (the word "END" must appear in the first 3 columns of this last OutList line)				
+---------------------------------------------------------------------------------------				
